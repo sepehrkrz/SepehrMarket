@@ -1,5 +1,5 @@
 {
-  "name": "kickstarter",
+  "name": "sepehrMarket",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -21,7 +21,7 @@
     "react-dom": "^16",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.3",
-    "solc": "^0.4.17",
+    "solc": "^0.8.15",
     "web3": "^1.8.0"
   }
 }
