@@ -8,14 +8,14 @@ export default () => {
             {/*on click redirects to root directory (homepage) */}
             <Link route="/">
                 <a className="item">
-                    Kickstarter web3
+                    SepehrMarket 
                 </a>
             </Link>
 
             <Menu.Menu position="right">
             <Link route="/">
                 <a className="item">
-                    Campaign
+                    Listing
                 </a>
             </Link>
             <Link route="/campaigns/new">

@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import Layout from '../../components/Layout'
 import { Button, Checkbox, Form, Input, Message } from 'semantic-ui-react'
-import factory from '../../ethereum/factory'
+import Marketplace from '../../ethereum/marketplace'
 import web3 from '../../ethereum/web3'
 import {Link, Router} from '../../routes'
 
 class CampaignNew extends Component {
 
     state = {
-        minimumContribution:'',
+        listingName:'',
         errorMessage:'',
         loading: false,
-        description: ''
+        listingPrice: ''
     };
 
     onSubmit = async (event) => {
@@ -20,8 +20,8 @@ class CampaignNew extends Component {
         this.setState({errorMessage:''});
         try {
             const accounts = await web3.eth.getAccounts();
-            await factory.methods
-            .createCampaign(this.state.minimumContribution, this.state.description)
+            await Marketplace.methods
+            .createListing(this.state.listingName, this.state.listingPrice)
             .send({
                 from: accounts[0]
             });
@@ -36,35 +36,35 @@ class CampaignNew extends Component {
     render() {
         return (
             <Layout>
-                <h3> Create a Campaign</h3> 
+                <h3> Create a Listing</h3> 
                 {/*must add error element to Form tag */}
                 <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                     <Form.Field>
-                        <label> Minimum contribution </label>
+                        <label> Name </label>
                         <Input 
-                            placeholder='Minimum contribution' 
-                            label="wei" 
+                            placeholder='Item name' 
+                            label="Text" 
                             labelPosition='right' 
-                            value={this.state.minimumContribution}
+                            value={this.state.listingName}
                             onChange={event =>
-                                this.setState({minimumContribution: event.target.value})}
+                                this.setState({listingName: event.target.value})}
                         />
                         
                     </Form.Field>
                     <Form.Field>
-                        <label> Description </label>
+                        <label> Price </label>
                         <Input 
-                            placeholder='Description' 
-                            label="Text" 
+                            placeholder='Price' 
+                            label="Sepehr Coin" 
                             labelPosition='right' 
-                            value={this.state.description}
+                            value={this.state.listingPrice}
                             onChange={event =>
-                                this.setState({description: event.target.value})}
+                                this.setState({listingPrice: event.target.value})}
                         />
                         
                     </Form.Field>
                     
-                    <Button type='submit' loading={this.state.loading} primary> Create Campaign</Button> 
+                    <Button type='submit' loading={this.state.loading} primary> Create Listing</Button> 
                     <Message error header="Oops!" content={this.state.errorMessage} />
                 </Form>
             </Layout>
